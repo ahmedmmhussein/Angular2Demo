@@ -2,6 +2,7 @@ import { Component, OnInit }  from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'app/products/product-list.component.html',
@@ -17,13 +18,15 @@ export class ProductListComponent implements OnInit {
 
     products: IProduct[];
 
-    constructor(private _productService: ProductService) {
+    constructor(private _productService: ProductService, private _router: Router) {
 
     }
 
     toggleImage(): void {
         this.showImage = !this.showImage;
     }
+
+
 
     ngOnInit(): void {
         this._productService.getProducts()
@@ -33,5 +36,9 @@ export class ProductListComponent implements OnInit {
 
     onRatingClicked(message: string): void {
         this.pageTitle = 'Product List: ' + message;
+    }
+
+      onAddItem(): void {
+        this._router.navigate(['/welcome']);
     }
 }

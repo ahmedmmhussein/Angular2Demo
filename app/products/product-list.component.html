@@ -29,6 +29,7 @@
                                 (click)='toggleImage()'>
                                 {{showImage ? 'Hide' : 'Show'}} Image
                             </button>
+
                         </th>
                         <th>Product</th>
                         <th>Code</th>
@@ -43,7 +44,7 @@
                             <img *ngIf='showImage'
                                  [src]='product.imageUrl'
                                  [title]='product.productName | uppercase'
-                                 [style.width.px]='imageWidth' 
+                                 [style.width.px]='imageWidth'
                                  [style.margin.px]='imageMargin'>
                         </td>
                         <td><a [routerLink]="['/product', product.productId]">
@@ -60,6 +61,12 @@
                        </td>
                     </tr>
                 </tbody>
+                <tr>
+                <button class='btn btn-primary'
+                                (click)='onAddItem()'>
+                                Add Product
+                </button>
+                </tr>
             </table>
         </div>
     </div>

@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_service_1 = require("./product.service");
+var router_1 = require("@angular/router");
 var ProductListComponent = (function () {
-    function ProductListComponent(_productService) {
+    function ProductListComponent(_productService, _router) {
         this._productService = _productService;
+        this._router = _router;
         this.pageTitle = 'Product List';
         this.imageWidth = 50;
         this.imageMargin = 2;
@@ -30,6 +32,9 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.onRatingClicked = function (message) {
         this.pageTitle = 'Product List: ' + message;
     };
+    ProductListComponent.prototype.onAddItem = function () {
+        this._router.navigate(['/welcome']);
+    };
     return ProductListComponent;
 }());
 ProductListComponent = __decorate([
@@ -37,7 +42,7 @@ ProductListComponent = __decorate([
         templateUrl: 'app/products/product-list.component.html',
         styleUrls: ['app/products/product-list.component.css']
     }),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [product_service_1.ProductService, router_1.Router])
 ], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
 //# sourceMappingURL=product-list.component.js.map
