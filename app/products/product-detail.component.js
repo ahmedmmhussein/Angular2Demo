@@ -39,6 +39,9 @@ var ProductDetailComponent = (function () {
     ProductDetailComponent.prototype.onRatingClicked = function (message) {
         this.pageTitle = 'Product Detail: ' + message;
     };
+    ProductDetailComponent.prototype.editProduct = function () {
+        this._router.navigate(['/editproduct/this.product.productId']);
+    };
     return ProductDetailComponent;
 }());
 ProductDetailComponent = __decorate([

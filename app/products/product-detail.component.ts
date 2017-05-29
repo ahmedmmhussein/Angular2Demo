@@ -45,4 +45,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     onRatingClicked(message: string): void {
         this.pageTitle = 'Product Detail: ' + message;
     }
+
+    editProduct():void{
+        this._router.navigate(['/editproduct/this.product.productId']);
+    }
 }
