@@ -40,7 +40,7 @@ var ProductDetailComponent = (function () {
         this.pageTitle = 'Product Detail: ' + message;
     };
     ProductDetailComponent.prototype.editProduct = function () {
-        this._router.navigate(['/editproduct/this.product.productId']);
+        this._router.navigate(['/editproduct', this.product.productId]);
     };
     return ProductDetailComponent;
 }());

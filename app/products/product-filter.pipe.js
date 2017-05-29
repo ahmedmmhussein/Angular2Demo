@@ -13,7 +13,7 @@ var ProductFilterPipe = (function () {
     ProductFilterPipe.prototype.transform = function (value, filterBy) {
         filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
         return filterBy ? value.filter(function (product) {
-            return product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1;
+            return JSON.stringify(product).toLocaleLowerCase().indexOf(filterBy) !== -1;
         }) : value;
     };
     return ProductFilterPipe;

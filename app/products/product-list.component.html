@@ -10,13 +10,6 @@
             <div class='col-md-4'>
                 <input type='text' [(ngModel)]='listFilter' />
             </div>
-            <div class='col-md-2'>Sort by:</div>
-            <div class='col-md-2'>
-                <button class='btn btn-primary'(click)="setSortBy('price')">Price</button>
-            </div>
-            <div class='col-md-2'>
-                <button class='btn btn-primary'(click)="setSortBy('starRating')">Rate</button>
-            </div>
         </div>
         <div class='row' *ngIf='listFilter'>
             <div class='col-md-6'>
@@ -41,8 +34,8 @@
                         <th>Product</th>
                         <th>Code</th>
                         <th>Available</th>
-                        <th>Price</th>
-                        <th>5 Star Rating</th>
+                        <th><button class="hiddenbutton" (click)="setSortBy('price')">Price</button></th>
+                        <th><button class="hiddenbutton" (click)="setSortBy('starRating')">5 Star Rating</button></th>
                     </tr>
                 </thead>
                 <tbody>

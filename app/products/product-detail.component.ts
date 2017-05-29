@@ -47,6 +47,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
 
     editProduct():void{
-        this._router.navigate(['/editproduct/this.product.productId']);
+        this._router.navigate(['/editproduct',this.product.productId]);
     }
 }

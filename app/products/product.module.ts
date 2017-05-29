@@ -4,6 +4,7 @@ import { RouterModule} from '@angular/router';
 import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
 import { AddProductComponent } from './AddProductComponent';
+import { EditProductComponent } from './EditProductComponent';
 import { ProductDetailGuard } from './product-guard.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -25,13 +26,18 @@ import { SharedModule } from '../shared/shared.module';
         canActivate: [ ProductDetailGuard],
         component: ProductDetailComponent
       },
-      { path: 'addproduct', component: AddProductComponent }
+      { path: 'addproduct', component: AddProductComponent },
+       { path: 'editproduct/:id',
+        canActivate: [ ProductDetailGuard],
+        component: EditProductComponent
+      }
     ])
   ],
   declarations: [
     ProductListComponent,
     ProductDetailComponent,
     AddProductComponent,
+    EditProductComponent,
     ProductFilterPipe,
     SortGridPipe
   ],

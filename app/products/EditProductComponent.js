@@ -14,26 +14,35 @@ var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var product_service_1 = require("./product.service");
 var EditProductComponent = (function () {
-    function EditProductComponent(_router, _productService, fb) {
+    function EditProductComponent(_router, _route, _productService, fb) {
         this._router = _router;
+        this._route = _route;
         this._productService = _productService;
         this.pageTitle = 'Edit Product';
-        this.complexForm = fb.group({
-            'productName': [null, forms_1.Validators.required],
-            'productCode': [],
-            'releaseDate': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
-            'description': [],
-            'price': [],
-            'starRating': []
-        });
-        console.log(this.complexForm);
-        this.complexForm.valueChanges.subscribe(function (form) {
-            console.log('form changed to:', form);
-        });
+        this.formBuilder = fb;
     }
+    EditProductComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this._route.params.subscribe(function (params) {
+            var id = +params['id'];
+            _this.product = _this._productService.getProductById(id);
+            _this.complexForm = _this.formBuilder.group({
+                'productName': [_this.product.productName, forms_1.Validators.required],
+                'productCode': [_this.product.productCode],
+                'releaseDate': [_this.product.releaseDate, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
+                'description': [_this.product.description],
+                'price': [_this.product.price],
+                'starRating': [_this.product.starRating]
+            });
+            console.log(_this.complexForm);
+            _this.complexForm.valueChanges.subscribe(function (form) {
+                console.log('form changed to:', form);
+            });
+        });
+    };
     EditProductComponent.prototype.submitForm = function (form) {
         console.log('you submitted value:', form);
-        this._productService.addProduct(form);
+        this._productService.updateProductById(this.product.productId, form);
         this.onBack();
     };
     EditProductComponent.prototype.onBack = function () {
@@ -46,6 +55,7 @@ EditProductComponent = __decorate([
         templateUrl: 'app/products/AddProductComponent.html'
     }),
     __metadata("design:paramtypes", [router_1.Router,
+        router_1.ActivatedRoute,
         product_service_1.ProductService,
         forms_1.FormBuilder])
 ], EditProductComponent);
