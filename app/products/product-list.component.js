@@ -25,15 +25,13 @@ var ProductListComponent = (function () {
         this.showImage = !this.showImage;
     };
     ProductListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._productService.getProducts()
-            .subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; });
+        this.products = this._productService.getAllProduct();
     };
     ProductListComponent.prototype.onRatingClicked = function (message) {
         this.pageTitle = 'Product List: ' + message;
     };
     ProductListComponent.prototype.onAddItem = function () {
-        this._router.navigate(['/welcome']);
+        this._router.navigate(['/addproduct']);
     };
     return ProductListComponent;
 }());

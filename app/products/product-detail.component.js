@@ -23,7 +23,7 @@ var ProductDetailComponent = (function () {
         var _this = this;
         this.sub = this._route.params.subscribe(function (params) {
             var id = +params['id'];
-            _this.getProduct(id);
+            _this.product = _this._productService.getProductById(id);
         });
     };
     ProductDetailComponent.prototype.ngOnDestroy = function () {

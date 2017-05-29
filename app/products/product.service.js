@@ -10,38 +10,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var Observable_1 = require("rxjs/Observable");
-require("rxjs/add/operator/do");
-require("rxjs/add/operator/catch");
-require("rxjs/add/operator/map");
-require("rxjs/add/observable/throw");
+var product_1 = require("./product");
 var ProductService = (function () {
-    function ProductService(_http) {
-        this._http = _http;
-        this._productUrl = 'api/products/products.json';
+    function ProductService() {
+        this.lastId = 0;
+        this.products = [];
+        var product1 = new product_1.IProduct({
+            "productId": 1,
+            "productName": "Leaf Rake",
+            "productCode": "GDN-0011",
+            "releaseDate": "March 19, 2016",
+            "description": "Leaf rake with 48-inch wooden handle.",
+            "price": 19.95,
+            "starRating": 3.2,
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+        });
+        this.addProduct(product1);
+        var product2 = new product_1.IProduct({
+            "productId": 2,
+            "productName": "Garden Cart",
+            "productCode": "GDN-0023",
+            "releaseDate": "March 18, 2016",
+            "description": "15 gallon capacity rolling garden cart",
+            "price": 32.99,
+            "starRating": 4.2,
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+        });
+        this.addProduct(product2);
     }
-    ProductService.prototype.getProducts = function () {
-        return this._http.get(this._productUrl)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
+    ProductService.prototype.addProduct = function (product) {
+        if (!product.id) {
+            product.id = ++this.lastId;
+        }
+        this.products.push(product);
+        return this;
     };
-    ProductService.prototype.getProduct = function (id) {
-        return this.getProducts()
-            .map(function (products) { return products.find(function (p) { return p.productId === id; }); });
+    ProductService.prototype.deleteProductById = function (id) {
+        this.products = this.products
+            .filter(function (product) { return product.id !== id; });
+        return this;
     };
-    ProductService.prototype.handleError = function (error) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
-        console.error(error);
-        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    ProductService.prototype.updateProductById = function (id, values) {
+        if (values === void 0) { values = {}; }
+        var product = this.getProductById(id);
+        if (!product) {
+            return null;
+        }
+        Object.assign(product, values);
+        return product;
+    };
+    ProductService.prototype.getAllProduct = function () {
+        return this.products;
+    };
+    ProductService.prototype.getProductById = function (id) {
+        return this.products
+            .filter(function (product) { return product.id === id; })
+            .pop();
     };
     return ProductService;
 }());
 ProductService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

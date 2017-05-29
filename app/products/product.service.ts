@@ -1,36 +1,68 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
 
 import { IProduct } from './product';
 
 @Injectable()
 export class ProductService {
-    private _productUrl = 'api/products/products.json';
+  lastId: number = 0;
+  products: IProduct[] = [];
+  constructor() {
+    let product1 = new IProduct({
+        "productId": 1,
+        "productName": "Leaf Rake",
+        "productCode": "GDN-0011",
+        "releaseDate": "March 19, 2016",
+        "description": "Leaf rake with 48-inch wooden handle.",
+        "price": 19.95,
+        "starRating": 3.2,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+    });
 
-    constructor(private _http: Http) { }
+        this.addProduct(product1);
+         let product2 = new IProduct({
+        "productId": 2,
+        "productName": "Garden Cart",
+        "productCode": "GDN-0023",
+        "releaseDate": "March 18, 2016",
+        "description": "15 gallon capacity rolling garden cart",
+        "price": 32.99,
+        "starRating": 4.2,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+    });
 
-    getProducts(): Observable<IProduct[]> {
-        return this._http.get(this._productUrl)
-            .map((response: Response) => <IProduct[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
-            .catch(this.handleError);
+        this.addProduct(product2);
+  }
+
+  addProduct(product: IProduct): ProductService {
+    if (!product.id) {
+      product.id = ++this.lastId;
     }
+    this.products.push(product);
+    return this;
+  }
 
-    getProduct(id: number): Observable<IProduct> {
-        return this.getProducts()
-            .map((products: IProduct[]) => products.find(p => p.productId === id));
-    }
+  deleteProductById(id: number): ProductService {
+    this.products = this.products
+      .filter(product => product.id !== id);
+    return this;
+  }
 
-    private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+  updateProductById(id: number, values: Object = {}): IProduct {
+    let product = this.getProductById(id);
+    if (!product) {
+      return null;
     }
+    Object.assign(product, values);
+    return product;
+  }
+
+  getAllProduct(): IProduct[] {
+    return this.products;
+  }
+
+  getProductById(id: number): Todo {
+    return this.products
+      .filter(product => product.id === id)
+      .pop();
+  }
 }

@@ -29,9 +29,7 @@ export class ProductListComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this._productService.getProducts()
-                .subscribe(products => this.products = products,
-                           error => this.errorMessage = <any>error);
+       this.products=this._productService.getAllProduct();
     }
 
     onRatingClicked(message: string): void {
@@ -39,6 +37,6 @@ export class ProductListComponent implements OnInit {
     }
 
       onAddItem(): void {
-        this._router.navigate(['/welcome']);
+        this._router.navigate(['/addproduct']);
     }
 }
