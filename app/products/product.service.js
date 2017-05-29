@@ -16,10 +16,9 @@ var ProductService = (function () {
         this.lastId = 0;
         this.products = [];
         var product1 = new product_1.IProduct({
-            "productId": 1,
             "productName": "Leaf Rake",
             "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
+            "releaseDate": "2017-03-19",
             "description": "Leaf rake with 48-inch wooden handle.",
             "price": 19.95,
             "starRating": 3.2,
@@ -27,10 +26,9 @@ var ProductService = (function () {
         });
         this.addProduct(product1);
         var product2 = new product_1.IProduct({
-            "productId": 2,
             "productName": "Garden Cart",
             "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
+            "releaseDate": "2017-11-20",
             "description": "15 gallon capacity rolling garden cart",
             "price": 32.99,
             "starRating": 4.2,
@@ -39,15 +37,15 @@ var ProductService = (function () {
         this.addProduct(product2);
     }
     ProductService.prototype.addProduct = function (product) {
-        if (!product.id) {
-            product.id = ++this.lastId;
+        if (!product.productId) {
+            product.productId = ++this.lastId;
         }
         this.products.push(product);
         return this;
     };
     ProductService.prototype.deleteProductById = function (id) {
         this.products = this.products
-            .filter(function (product) { return product.id !== id; });
+            .filter(function (product) { return product.productId !== id; });
         return this;
     };
     ProductService.prototype.updateProductById = function (id, values) {
@@ -64,8 +62,11 @@ var ProductService = (function () {
     };
     ProductService.prototype.getProductById = function (id) {
         return this.products
-            .filter(function (product) { return product.id === id; })
+            .filter(function (product) { return product.productId === id; })
             .pop();
+    };
+    ProductService.prototype.sortedProducts = function () {
+        return this.products.sort(function (a, b) { return b.starRating - a.starRating; });
     };
     return ProductService;
 }());

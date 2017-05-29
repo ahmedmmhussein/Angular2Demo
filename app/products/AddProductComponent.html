@@ -6,55 +6,88 @@
     <div class='panel-body'>
         <div class='row'>
         <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-         <div class='col-md-6'>
-                <div class='row'>
+            <div class='col-md-6'>
+            <div class='row'>
                 <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['productName'].valid && complexForm.controls['productName'].touched}">
                 </div>
                 </div>
-                </div>
-            <div class='col-md-6'>
                 <div class='row'>
                     <div class='col-md-3'>Name:</div>
                     <div class='col-md-6'><input type="text" class="form-control" name="productName" id="productName" [formControl]="complexForm.controls['productName']">
                     <div *ngIf="complexForm.controls['productName'].hasError('required') && complexForm.controls['productName'].touched" class="alert alert-danger">You must include a product name.</div>
                     </div>
                 </div>
-                <div class='row'>
+
+
+
+
+                  <div class='row'>
                     <div class='col-md-3'>Code:</div>
-                    <div class='col-md-6'><input type="text" class="form-control" name="productCode" required="true" ngModel></div>
-                     <div role="alert" class='col-md-3'> <span class="error" ng-show="ngForm.input.$error.required">Required!</span></div>
+                    <div class='col-md-6'><input type="text" class="form-control" name="productCode" [formControl]="complexForm.controls['productCode']"></div>
                 </div>
-                <div class='row'>
+
+
+
+                   <div class='row'>
                     <div class='col-md-3'>Description:</div>
-                    <div class='col-md-6'><input type="text" class="form-control" name="description" required="true" ngModel></div>
-                     <div role="alert" class='col-md-3'> <span class="error" ng-show="ngForm.input.$error.required">Required!</span></div>
+                    <div class='col-md-6'><input type="text" class="form-control" name="description" [formControl]="complexForm.controls['description']"></div>
+                </div>
+
+
+
+
+
+
+                 <div class='row'>
+                <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['productCode'].valid && complexForm.controls['productCode'].touched}">
+                </div>
                 </div>
                 <div class='row'>
                     <div class='col-md-3'>Availability:</div>
-                    <div class='col-md-6'><input type="date" class="form-control" name="releaseDate" ngform-validator="{type: 'date', min: ['Date must be this year', 2017-01-01]}" ng-required="true" ngModel></div>
-                     <div role="alert" class='col-md-3'> <span class="error" ng-show="ngForm.releaseDate.$error.required">Required!</span><span class="error" ng-show="myForm.input.$error.date">
-         Not a valid date!</span></div>
+                    <div class='col-md-6'><input type="date" class="form-control" name="releaseDate" id="releaseDate" [formControl]="complexForm.controls['releaseDate']">
+                    <div *ngIf="complexForm.controls['releaseDate'].hasError('required') && complexForm.controls['releaseDate'].touched" class="alert alert-danger">You must enter a release date.</div>
+                    <div *ngIf="complexForm.controls['releaseDate'].hasError('pattern') && complexForm.controls['releaseDate'].touched" class="alert alert-danger">You must enter a date in this year.</div>
+                    </div>
                 </div>
+
+
+
+                   <div class='row'>
+                <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['productCode'].valid && complexForm.controls['productCode'].touched}">
+                </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3'>Email:</div>
+                    <div class='col-md-6'><input type="text" class="form-control" name="email" id="email" [formControl]="complexForm.controls['email']">
+                    <div *ngIf="complexForm.controls['email'].hasError('required') && complexForm.controls['email'].touched" class="alert alert-danger">You must enter an email.</div>
+                    <div *ngIf="complexForm.controls['email'].hasError('pattern') && complexForm.controls['email'].touched" class="alert alert-danger">You must enter a valid email.</div>
+                    </div>
+                </div>
+
+
                 <div class='row'>
                     <div class='col-md-3'>Price:</div>
-                    <div class='col-md-6'><input type="float" class="form-control" name="price" required="true" ngModel></div>
-                     <div role="alert" class='col-md-3'> <span class="error" ng-show="ngForm.input.$error.required">Required!</span></div>
+                    <div class='col-md-6'><input type="float" class="form-control" name="price" [formControl]="complexForm.controls['price']"></div>
                 </div>
-                <div class='row'>
+
+
+
+                    <div class='row'>
                     <div class='col-md-3'>5 Star Rating:</div>
                     <div class='col-md-6'>
-                      <input type="float" class="form-control" name="starRating" required="true" ngModel>
+                      <input type="float" class="form-control" name="starRating" [formControl]="complexForm.controls['starRating']">
                     </div>
-                     <div role="alert" class='col-md-3'> <span class="error" ng-show="ngForm.input.$error.required">Required!</span></div>
                 </div>
+
+
+
                  <div class='row'>
-                 <div class='col-md-3'><button type="submit" class="btn btn-success" >Submit</button></div>
+                 <div class='col-md-3'><button type="submit" class="btn btn-primary" [disabled]="!complexForm.valid">Submit</button></div>
                  </div>
             </div>
             </form>
-        </div>
-    </div>
-
+            </div>
+            </div>
     <div class='panel-footer'>
         <a class='btn btn-default' (click)='onBack()' style='width:80px'>
             <i class='glyphicon glyphicon-chevron-left'></i> Back

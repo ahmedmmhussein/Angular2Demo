@@ -10,7 +10,6 @@ import { ProductService } from './product.service';
 })
 export class AddProductComponent {
 pageTitle: string = 'Add Product';
-  model = new IProduct({});
  complexForm : FormGroup;
 
       constructor(private _router: Router,
@@ -18,13 +17,19 @@ pageTitle: string = 'Add Product';
             	fb: FormBuilder){
     this.complexForm = fb.group({
       'productName' : [null, Validators.required],
-      'productCode': [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
-      'releaseDate' : [null, Validators.required],
-      'description' : false,
-      'price' :false,
-      'starRating' :false
+      'productCode': [],
+      'releaseDate' : [null, Validators.compose([Validators.required, Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
+      'description' : [],
+      'email' : [null, Validators.compose([Validators.required, Validators.pattern("([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})")])],
+      'price' :[],
+      'starRating' :[]
     })
+       console.log(this.complexForm);
+    this.complexForm.valueChanges.subscribe( (form: any) => {
+      console.log('form changed to:', form);
     }
+    );
+  }
 
 
   submitForm(form: any): void {

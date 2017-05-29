@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var product_1 = require("./product");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var product_service_1 = require("./product.service");
@@ -19,14 +18,18 @@ var AddProductComponent = (function () {
         this._router = _router;
         this._productService = _productService;
         this.pageTitle = 'Add Product';
-        this.model = new product_1.IProduct({});
         this.complexForm = fb.group({
             'productName': [null, forms_1.Validators.required],
-            'productCode': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.minLength(5), forms_1.Validators.maxLength(10)])],
-            'releaseDate': [null, forms_1.Validators.required],
-            'description': false,
-            'price': false,
-            'starRating': false
+            'productCode': [],
+            'releaseDate': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
+            'description': [],
+            'email': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})")])],
+            'price': [],
+            'starRating': []
+        });
+        console.log(this.complexForm);
+        this.complexForm.valueChanges.subscribe(function (form) {
+            console.log('form changed to:', form);
         });
     }
     AddProductComponent.prototype.submitForm = function (form) {

@@ -8,6 +8,8 @@ import { ProductDetailGuard } from './product-guard.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductFilterPipe } from './product-filter.pipe';
+import { SortGridPipe } from './SortGridPipe';
+
 import { ProductService } from './product.service';
 
 import { SharedModule } from '../shared/shared.module';
@@ -30,7 +32,8 @@ import { SharedModule } from '../shared/shared.module';
     ProductListComponent,
     ProductDetailComponent,
     AddProductComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    SortGridPipe
   ],
   providers: [
     ProductService,

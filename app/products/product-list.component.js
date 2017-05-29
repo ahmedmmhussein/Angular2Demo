@@ -20,6 +20,7 @@ var ProductListComponent = (function () {
         this.imageWidth = 50;
         this.imageMargin = 2;
         this.showImage = false;
+        this.orderByField = "productName";
     }
     ProductListComponent.prototype.toggleImage = function () {
         this.showImage = !this.showImage;
@@ -29,6 +30,9 @@ var ProductListComponent = (function () {
     };
     ProductListComponent.prototype.onRatingClicked = function (message) {
         this.pageTitle = 'Product List: ' + message;
+    };
+    ProductListComponent.prototype.setSortBy = function (message) {
+        this.orderByField = message;
     };
     ProductListComponent.prototype.onAddItem = function () {
         this._router.navigate(['/addproduct']);

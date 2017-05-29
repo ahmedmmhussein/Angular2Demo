@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
     showImage: boolean = false;
     listFilter: string;
     errorMessage: string;
+    orderByField : string = "productName";
 
     products: IProduct[];
 
@@ -34,6 +35,10 @@ export class ProductListComponent implements OnInit {
 
     onRatingClicked(message: string): void {
         this.pageTitle = 'Product List: ' + message;
+    }
+
+    setSortBy(message: string): void {
+        this.orderByField = message;
     }
 
       onAddItem(): void {

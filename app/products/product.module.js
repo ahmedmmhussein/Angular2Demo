@@ -14,6 +14,7 @@ var AddProductComponent_1 = require("./AddProductComponent");
 var product_guard_service_1 = require("./product-guard.service");
 var forms_1 = require("@angular/forms");
 var product_filter_pipe_1 = require("./product-filter.pipe");
+var SortGridPipe_1 = require("./SortGridPipe");
 var product_service_1 = require("./product.service");
 var shared_module_1 = require("../shared/shared.module");
 var ProductModule = (function () {
@@ -40,7 +41,8 @@ ProductModule = __decorate([
             product_list_component_1.ProductListComponent,
             product_detail_component_1.ProductDetailComponent,
             AddProductComponent_1.AddProductComponent,
-            product_filter_pipe_1.ProductFilterPipe
+            product_filter_pipe_1.ProductFilterPipe,
+            SortGridPipe_1.SortGridPipe
         ],
         providers: [
             product_service_1.ProductService,
