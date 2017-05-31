@@ -20,9 +20,8 @@ pageTitle: string = 'Add Product';
       'productCode': [],
       'releaseDate' : [null, Validators.compose([Validators.required, Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
       'description' : [],
-      'email' : [null, Validators.compose([Validators.required, Validators.pattern("([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})")])],
-      'price' :[],
-      'starRating' :[]
+      'price' :[null, Validators.compose([Validators.required, Validators.pattern("^[+]?([.]\\d+|\\d+([.]\\d+)?)$")])],
+      'starRating' :[null, Validators.compose([Validators.required, Validators.pattern("^([0-5]{1})(\\.[0-9]{1,2})?$")])]
     })
        console.log(this.complexForm);
     this.complexForm.valueChanges.subscribe( (form: any) => {

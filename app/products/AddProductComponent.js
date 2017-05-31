@@ -23,9 +23,8 @@ var AddProductComponent = (function () {
             'productCode': [],
             'releaseDate': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("2017-[0-9]{2}-[0-9]{2}")])],
             'description': [],
-            'email': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})")])],
-            'price': [],
-            'starRating': []
+            'price': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("^[+]?([.]\\d+|\\d+([.]\\d+)?)$")])],
+            'starRating': [null, forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("^([0-5]{1})(\\.[0-9]{1,2})?$")])]
         });
         console.log(this.complexForm);
         this.complexForm.valueChanges.subscribe(function (form) {

@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
     listFilter: string;
     errorMessage: string;
     orderByField : string = "productName";
+    applyFilter: boolean = false;
 
     products: IProduct[];
 
@@ -38,7 +39,13 @@ export class ProductListComponent implements OnInit {
     }
 
     setSortBy(message: string): void {
+    if(this.applyFilter){
+        this.orderByField = "productId";
+        this.applyFilter=false;
+    }else{
         this.orderByField = message;
+        this.applyFilter=true;
+    }
     }
 
       onAddItem(): void {

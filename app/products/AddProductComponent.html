@@ -65,19 +65,36 @@
                 </div>
  -->
 
+
+
                 <div class='row'>
-                    <div class='col-md-3'>Price:</div>
-                    <div class='col-md-6'><input type="float" class="form-control" name="price" [formControl]="complexForm.controls['price']"></div>
+                <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['price'].valid && complexForm.controls['price'].touched}">
                 </div>
-
-
-
-                    <div class='row'>
-                    <div class='col-md-3'>5 Star Rating:</div>
-                    <div class='col-md-6'>
-                      <input type="float" class="form-control" name="starRating" [formControl]="complexForm.controls['starRating']">
+                </div>
+                <div class='row'>
+                   <div class='col-md-3'>Price:</div>
+                    <div class='col-md-6'><input type="float" class="form-control" name="price" [formControl]="complexForm.controls['price']">
+                    <div *ngIf="complexForm.controls['price'].hasError('required') && complexForm.controls['price'].touched" class="alert alert-danger">You must enter a price.</div>
+                    <div *ngIf="complexForm.controls['price'].hasError('pattern') && complexForm.controls['price'].touched" class="alert alert-danger">You must enter not negative number.</div>
                     </div>
                 </div>
+
+
+
+
+                     <div class='row'>
+                <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['starRating'].valid && complexForm.controls['starRating'].touched}">
+                </div>
+                </div>
+                <div class='row'>
+                   <div class='col-md-3'>5 Star Rating:</div>
+                    <div class='col-md-6'>
+                      <input type="float" class="form-control" name="starRating" [formControl]="complexForm.controls['starRating']">
+                    <div *ngIf="complexForm.controls['starRating'].hasError('required') && complexForm.controls['starRating'].touched" class="alert alert-danger">You must enter a star rating.</div>
+                    <div *ngIf="complexForm.controls['starRating'].hasError('pattern') && complexForm.controls['starRating'].touched" class="alert alert-danger">You must enter rate between 0 and 5.</div>
+                    </div>
+                </div>
+
 
 
 

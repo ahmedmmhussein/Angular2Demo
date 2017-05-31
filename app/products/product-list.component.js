@@ -21,6 +21,7 @@ var ProductListComponent = (function () {
         this.imageMargin = 2;
         this.showImage = false;
         this.orderByField = "productName";
+        this.applyFilter = false;
     }
     ProductListComponent.prototype.toggleImage = function () {
         this.showImage = !this.showImage;
@@ -32,7 +33,14 @@ var ProductListComponent = (function () {
         this.pageTitle = 'Product List: ' + message;
     };
     ProductListComponent.prototype.setSortBy = function (message) {
-        this.orderByField = message;
+        if (this.applyFilter) {
+            this.orderByField = "productId";
+            this.applyFilter = false;
+        }
+        else {
+            this.orderByField = message;
+            this.applyFilter = true;
+        }
     };
     ProductListComponent.prototype.onAddItem = function () {
         this._router.navigate(['/addproduct']);

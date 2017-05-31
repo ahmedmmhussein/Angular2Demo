@@ -19,7 +19,7 @@ var SortGridPipe = (function () {
         array.sort(function (a, b) {
             var left = a[column];
             var right = b[column];
-            return right - left;
+            return left - right;
         });
         return array;
     };

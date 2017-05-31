@@ -12,8 +12,8 @@ export class ProductService {
         "productCode": "GDN-0011",
         "releaseDate": "2017-03-19",
         "description": "Leaf rake with 48-inch wooden handle.",
-        "price": 19.95,
-        "starRating": 3.2,
+        "price": 32.99,
+        "starRating": 4.2,
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
     });
 
@@ -23,8 +23,8 @@ export class ProductService {
         "productCode": "GDN-0023",
         "releaseDate": "2017-11-20",
         "description": "15 gallon capacity rolling garden cart",
-        "price": 32.99,
-        "starRating": 4.2,
+        "price": 19.95,
+        "starRating": 3.2,
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
     });
 

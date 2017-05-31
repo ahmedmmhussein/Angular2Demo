@@ -15,7 +15,7 @@ export class SortGridPipe implements PipeTransform {
         array.sort((a: any, b: any) => {
             let left = a[column];
             let right = b[column];
-            return right - left;
+            return left - right;
         });
         return array;
     }
